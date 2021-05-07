@@ -7,7 +7,7 @@ function Header() {
         <div> 
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <h3 className="navbar-brand"><small id="small">5Star</small> <b id="bold">Runners</b></h3>
+                    <h3 className="navbar-brand"><small id="small">5Star</small><b id="bold">Runners</b></h3>
                     <div className="input-group">
                         <span className="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
