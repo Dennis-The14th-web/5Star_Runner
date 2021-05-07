@@ -4,7 +4,7 @@ import './index.css';
 
 function Movies() {
     return (
-        <div className="bg-light">
+        <div>
             <Container className='portfolio-container section-container p-3'>
                 <Row>
                 <Col lg={4}></Col>
