@@ -12,8 +12,6 @@ function App() {
   const [results, setResults] = useState([]);
   const [nominates, setNominates] = useState([]);
   const [btnLimit, setBtnLimit] = useState(false);
-
-//  const [selected, setSelected] = useState([]);
   
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
@@ -54,8 +52,6 @@ function App() {
       }
     }
   }
-
-
 
   const handleEnterBtn = (e) => {
     if (e.keyCode === 13) {

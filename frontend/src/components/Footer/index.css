@@ -20,9 +20,11 @@
   .fa:hover {
     color: #91640F;
     text-decoration-line: none;
+    cursor: pointer;
   }
 
   
 .fa-github:hover {
     text-decoration-line: none;
+    cursor: pointer;
 } 
