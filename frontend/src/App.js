@@ -40,12 +40,6 @@ function App() {
     setNominates(result)
   }, []);
 
-  // const handleInput = (event) => {
-  //   let search = event.target.value;
-  //   setSearch(search)
-  //   console.log(search);
-  // }
-
   const saveToLocalStorage = (items) => {
     localStorage.setItem('Nominees', JSON.stringify(items))
   }
