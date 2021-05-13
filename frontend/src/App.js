@@ -4,8 +4,6 @@ import './App.css';
 import Search from './components/Search';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
-// import MoviesHeading from './components/MoviesHeading';
-// import Nominate from './components/Nominate';
 import apiKey from './keys.js';
 
 
@@ -13,7 +11,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [nominates, setNominates] = useState([]);
-  // const [btnLimit, setBtnLimit] = useState([]);
+  const [btnLimit, setBtnLimit] = useState(false);
 
 //  const [selected, setSelected] = useState([]);
   
@@ -22,7 +20,7 @@ function App() {
   const handleSearch = (search) => {
    axios(`${queryUrl}&s=${search}`)
    .then(({ data })=>{
-    console.log(data);
+    // console.log(data);
     if (data.Search){
     setResults(data.Search)
     }
@@ -31,7 +29,7 @@ function App() {
 
   useEffect(() => {
     handleSearch(search)
-  }, [search]);
+  });
 
   useEffect(() => {
     const result = JSON.parse(
@@ -44,14 +42,33 @@ function App() {
     localStorage.setItem('Nominees', JSON.stringify(items))
   }
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setNominates(nominates => `${nominates}<Spinner animation="border" variant="primary" size="sm" />`)
+  //   }, 3000);
+  //   return () => clearInterval(interval)
+  // }, []);
+
   const addNominees = (movie) => {
-    console.log(" Just got clicked ");
-   const result = [...nominates, movie]
-  //  const display = [...state.btnLimit, movie]
-  //  console.log(result);
-    setNominates(result)
-    saveToLocalStorage(result)
+    let isNominated = nominates.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
+    if (nominates.length === 5){
+      alert("You have exeeded the numbers of nominations");
+    } else{
+      if(!isNominated){
+        const result = [...nominates, movie];
+        setNominates(result);
+        saveToLocalStorage(result);
+      }
+    }
   }
+
+
+
+  const handleEnterBtn = (e) => {
+    if (e.keyCode === 13) {
+        handleSearch()
+    }
+  };
 
   const removeNominees = (movie) => {
     const result = nominates.filter(
@@ -67,14 +84,15 @@ function App() {
       search={search}
       handleInput={setSearch}
       handleSearch={handleSearch}
+      handleEnter={handleEnterBtn}
       />
       <Movies 
       results={results}
-      // Nominate={Nominate}
       addNominees={addNominees}
       nominees={nominates}
       removeNominees={removeNominees}
-      // btnLimit={state.btnLimit}
+      btnLimit={btnLimit}
+      setBtnLimit={setBtnLimit}
       />
       <Footer />
     </div>

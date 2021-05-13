@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css'
 
 
-function Search({ handleSearch, handleInput, search }) {
+function Search({ handleSearch, handleInput, search, handleEnter }) {
     return (
         <div> 
             <nav className="navbar navbar-light bg-light">
@@ -19,6 +19,7 @@ function Search({ handleSearch, handleInput, search }) {
                         <input type="text" className="form-control" placeholder="Movie title" aria-label="Username" aria-describedby="basic-addon1" name="search"
                         value={search}
                         onChange={(e)=>handleInput(e.target.value)}
+                        onKeyDown={handleEnter}
                         />
                     </div>
 
