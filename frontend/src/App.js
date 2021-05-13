@@ -42,13 +42,6 @@ function App() {
     localStorage.setItem('Nominees', JSON.stringify(items))
   }
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setNominates(nominates => `${nominates}<Spinner animation="border" variant="primary" size="sm" />`)
-  //   }, 3000);
-  //   return () => clearInterval(interval)
-  // }, []);
-
   const addNominees = (movie) => {
     let isNominated = nominates.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
     if (nominates.length === 5){
