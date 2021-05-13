@@ -17,9 +17,8 @@ function Search({ handleSearch, handleInput, search }) {
                             </svg>
                         </span>
                         <input type="text" className="form-control" placeholder="Movie title" aria-label="Username" aria-describedby="basic-addon1" name="search"
-                        value={search.value}
-                        onChange={handleInput}
-                        // onKeyPress={handleSearch}
+                        value={search}
+                        onChange={(e)=>handleInput(e.target.value)}
                         />
                     </div>
 

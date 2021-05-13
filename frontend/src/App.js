@@ -1,59 +1,86 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import Search from './components/Search';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
+// import MoviesHeading from './components/MoviesHeading';
+// import Nominate from './components/Nominate';
 import apiKey from './keys.js';
 
 
 function App() {
-  const [state, setState] = useState({
-    search: "",
-    results: [],
-    selected: []
-  })
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
+  const [nominates, setNominates] = useState([]);
+  // const [btnLimit, setBtnLimit] = useState([]);
+
+//  const [selected, setSelected] = useState([]);
+  
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
-  const handleSearch = () => {
-   axios(`${queryUrl}&s=${state.search}`)
+  const handleSearch = (search) => {
+   axios(`${queryUrl}&s=${search}`)
    .then(({ data })=>{
     console.log(data);
-    let result = data.Search;
-    setState(prvState => {
-      return { ...prvState, results:result }
-    })
+    if (data.Search){
+    setResults(data.Search)
+    }
    });
-   
   }
 
-  const handleInput = (event) => {
-    let search = event.target.value;
-    setState(prvState=>{
-      return {...prvState, search: search}
-    })
-    console.log(search);
+  useEffect(() => {
+    handleSearch(search)
+  }, [search]);
+
+  useEffect(() => {
+    const result = JSON.parse(
+      localStorage.getItem('Nominees')
+    )
+    setNominates(result)
+  }, []);
+
+  // const handleInput = (event) => {
+  //   let search = event.target.value;
+  //   setSearch(search)
+  //   console.log(search);
+  // }
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem('Nominees', JSON.stringify(items))
   }
 
-  const handleClick = () => {
+  const addNominees = (movie) => {
     console.log(" Just got clicked ");
-    let result = state.results;
-    setState(prvState => {
-      return { ...prvState, selected:result}
-    })
+   const result = [...nominates, movie]
+  //  const display = [...state.btnLimit, movie]
+  //  console.log(result);
+    setNominates(result)
+    saveToLocalStorage(result)
+  }
+
+  const removeNominees = (movie) => {
+    const result = nominates.filter(
+      nominate => nominate.imdbID !== movie.imdbID 
+     );
+    setNominates(result);
+    saveToLocalStorage(result);
   }
 
   return (
     <div className="App">
       <Search
-      search={state.search}
-      handleInput={handleInput}
+      search={search}
+      handleInput={setSearch}
       handleSearch={handleSearch}
       />
       <Movies 
-      results={state.results}
-      handleClick={handleClick}
-      selected={state.selected}
+      results={results}
+      // Nominate={Nominate}
+      addNominees={addNominees}
+      nominees={nominates}
+      removeNominees={removeNominees}
+      // btnLimit={state.btnLimit}
       />
       <Footer />
     </div>
