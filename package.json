@@ -1,0 +1,20 @@
+{
+  "name": "5star_runner",
+  "version": "1.0.0",
+  "description": "Bundler",
+  "main": "index.js",
+  "scripts": {
+    "start": "\"cd frontend && npm run start\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dennis-The14th-web/5Star_Runner.git"
+  },
+  "author": "Dennis Itua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dennis-The14th-web/5Star_Runner/issues"
+  },
+  "homepage": "https://github.com/Dennis-The14th-web/5Star_Runner#readme"
+}
