@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 import Search from './components/Search';
 import Movies from './components/Movies';
@@ -16,13 +16,14 @@ function App() {
   
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
-  const handleSearch = (search) => {
-   axios(`${queryUrl}&s=${search}`)
-   .then(({ data })=>{
+  const handleSearch = async(search) => {
+   const response = await fetch(`${queryUrl}&s=${search}`)
+   const data = await response.json()
+  //  .then(({ data })=>{
     if (data.Search){
     setResults(data.Search)
     }
-   });
+  //  });
   }
 
   useEffect(() => {
@@ -42,11 +43,13 @@ function App() {
 
   const handleAddNominees = (movie) => {
     let isNominated = selected.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
+    console.log("isNominated: ", isNominated);
     if (selected.length === 5){
       setModalView(true);
     } else{
       if(!isNominated){
         const result = [...selected, movie];
+        console.log("result", result);
         setSelected(result);
         saveToLocalStorage(result);
       }

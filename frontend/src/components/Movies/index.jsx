@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, ModalTitle } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import './index.css';
 import {Modal, Button, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -70,7 +70,6 @@ function Movies(props) {
                     :(
                     props.nominees.map((nominee, i) => 
                         (
-
                             <li className="nomination-list m-2"
                             key={nominee.imdbID}>
                                 {nominee.Title} 
@@ -82,7 +81,8 @@ function Movies(props) {
                             </button>
                             </li>     
                         )
-                    ))
+                    )
+                    )
                 }
                 </ul>
                 </Col>
