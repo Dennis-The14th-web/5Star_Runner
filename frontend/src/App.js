@@ -10,15 +10,15 @@ import apiKey from './keys.js';
 function App() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const [nominates, setNominates] = useState([]);
-  const [btnLimit, setBtnLimit] = useState(false);
+  const [selected, setSelected] = useState([]);
+  // const [btnLimit, setBtnLimit] = useState([]);
+  const [modalView, setModalView] = useState(false);
   
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
   const handleSearch = (search) => {
    axios(`${queryUrl}&s=${search}`)
    .then(({ data })=>{
-    // console.log(data);
     if (data.Search){
     setResults(data.Search)
     }
@@ -33,24 +33,33 @@ function App() {
     const result = JSON.parse(
       localStorage.getItem('Nominees')
     )
-    setNominates(result)
+    setSelected(result)
   }, []);
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem('Nominees', JSON.stringify(items))
   }
 
-  const addNominees = (movie) => {
-    let isNominated = nominates.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
-    if (nominates.length === 5){
-      alert("You have exeeded the numbers of nominations");
+  const handleAddNominees = (movie) => {
+    let isNominated = selected.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
+    if (selected.length === 5){
+      setModalView(true);
     } else{
       if(!isNominated){
-        const result = [...nominates, movie];
-        setNominates(result);
+        const result = [...selected, movie];
+        setSelected(result);
         saveToLocalStorage(result);
       }
     }
+    if (selected.length === 3){
+      alert("Awesome! You're almost there 🙂")
+    } else if (selected.length === 4){
+      alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
+    }
+  }
+
+  const handleModalToggle = () => {
+    setModalView(false);
   }
 
   const handleEnterBtn = (e) => {
@@ -60,11 +69,14 @@ function App() {
   };
 
   const removeNominees = (movie) => {
-    const result = nominates.filter(
+    const result = selected.filter(
       nominate => nominate.imdbID !== movie.imdbID 
      );
-    setNominates(result);
+    setSelected(result);
     saveToLocalStorage(result);
+    if (selected.length === 1){
+      alert("Go ahead and select new nominees! 🤩")
+    }
   }
 
   return (
@@ -76,12 +88,15 @@ function App() {
       handleEnter={handleEnterBtn}
       />
       <Movies 
+      search={search}
       results={results}
-      addNominees={addNominees}
-      nominees={nominates}
+      addNominees={handleAddNominees}
+      nominees={selected}
       removeNominees={removeNominees}
-      btnLimit={btnLimit}
-      setBtnLimit={setBtnLimit}
+      modalView={modalView}
+      toggle={handleModalToggle}
+      // btnLimit={btnLimit}
+      // setBtnLimit={setBtnLimit}
       />
       <Footer />
     </div>

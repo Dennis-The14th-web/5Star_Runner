@@ -9,3 +9,27 @@
     margin-left: 10px;
     border: 1px solid #0c0c0c;
 }
+
+#modal-body {
+    background: url('./images/congratulation.gif'); 
+    width: 100%;
+    min-height: 350px;
+    justify-content: stretch;
+    position:relative;
+    backface-visibility: hidden;
+    background-size: cover;
+    color: #fff;
+    font-size: xx-large;
+    font-weight: bolder;
+  }
+
+.modalHeader {
+    text-align: center;
+    color: #0000ff;
+    font-size: xx-large;
+    font-weight: bolder;
+  }
+
+  #paragraph {
+    color: #006400;
+  }

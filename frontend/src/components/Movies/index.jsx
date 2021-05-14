@@ -1,20 +1,49 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Spinner from 'react-bootstrap/Spinner'
+import { Container, Row, Col, ModalTitle } from 'react-bootstrap';
+import Spinner from 'react-bootstrap/Spinner';
 import './index.css';
+import {Modal, Button, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-function Movies({ results, nominees, addNominees, removeNominees, btnLimit, setBtnLimit }) {
+
+function Movies(props) {
     return (
         <div>
             <Container className='container p-3'>
+       
+                <Modal 
+                        isOpen={ props.modalView }
+                        // toggle={toggle}\
+                        size="lg"
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                >
+                    <ModalHeader className="modalHeader">
+                       CONGRATULATIONS!!!
+                    </ModalHeader>
+                    <ModalBody id="modal-body">You have successfully made 5 nominations.</ModalBody>
+                    <ModalFooter>
+                    <Button 
+                    onClick={props.toggle}
+                    color="danger"
+                    >
+                    Close</Button>
+                    </ModalFooter>
+                </Modal>
+
                 <Row>
-                <Col className="container bg-light" lg={5}><h2>Movies</h2><hr/>
+                <Col className="container bg-light" lg={5}><h2>{
+                    !props.search?.length ? 
+                    <Spinner animation="border" variant="secondary" size="sm" /> 
+                    :
+                    `Results for "${props.search}"`
+                    }
+                    </h2><hr/>
                 <ul >
                 {
-                    !results?.length ? 
-                    <Spinner animation="border" variant="primary" size="sm" /> 
+                    !props.results?.length ? 
+                    <Spinner animation="grow" variant="primary" size="sm" /> 
                     :(
-                    results.map((result, id) => (
+                    props.results.map((result, id) => (
                         
                             <li className="movie-list m-2"
                             key={result.imdbID}>
@@ -23,7 +52,7 @@ function Movies({ results, nominees, addNominees, removeNominees, btnLimit, setB
                             
                             <button className="btn btn-success p-0" id="nominees" 
                             // disabled={!btnLimit ? true : false}
-                            onClick={()=>addNominees(result)} 
+                            onClick={()=>props.addNominees(result)} 
                             >
                             Nominate
                             </button>
@@ -36,17 +65,23 @@ function Movies({ results, nominees, addNominees, removeNominees, btnLimit, setB
                 <Col className="container bg-light" lg={6}><h2>Nominations</h2><hr/>
                 <ul >
                 {
-                    nominees.map((nominee, i) => (
+                    !props.nominees?.length ?
+                    <Spinner animation="grow" variant="warning" size="sm" /> 
+                    :(
+                    props.nominees.map((nominee, i) => 
+                        (
+
                             <li className="nomination-list m-2"
                             key={nominee.imdbID}>
                                 {nominee.Title} 
                                 ({nominee.Year}) 
-                            <button className="btn btn-success p-0" id="nominees"
-                            onClick={()=>removeNominees(nominee)} 
+                            <button className="btn btn-danger p-0" id="nominees"
+                            onClick={()=>props.removeNominees(nominee)} 
                             >
                             Remove
                             </button>
                             </li>     
+                        )
                     ))
                 }
                 </ul>
