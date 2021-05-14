@@ -4,7 +4,8 @@ import './App.css';
 import Search from './components/Search';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
-import apiKey from './keys.js';
+// import apiKey from './keys.js';
+const apiKey = "d69e1782";
 
 
 function App() {
