@@ -1,35 +1,38 @@
 import { React, useEffect, useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import './App.css';
 import Search from './components/Search';
 import Movies from './components/Movies';
 import Footer from './components/Footer';
-// import apiKey from './keys.js';
-const apiKey = "d69e1782";
+import apiKey from './keys.js';
+
 
 
 function App() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [selected, setSelected] = useState([]);
-  // const [btnLimit, setBtnLimit] = useState([]);
   const [modalView, setModalView] = useState(false);
+  const [isNominated, setIsNominated] = useState(false);
   
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
-  const handleSearch = async(search) => {
-   const response = await fetch(`${queryUrl}&s=${search}`)
-   const data = await response.json()
-  //  .then(({ data })=>{
+  const handleSearch = (search) => {
+   axios(`${queryUrl}&s=${search}`)
+   .then(({ data })=>{
     if (data.Search){
     setResults(data.Search)
     }
-  //  });
+   });
   }
 
   useEffect(() => {
     handleSearch(search)
   });
+
+  // useEffect(() => {
+  //   handleAddNominees(results)
+  // }, [results]);
 
   useEffect(() => {
     const result = JSON.parse(
@@ -38,28 +41,36 @@ function App() {
     setSelected(result)
   }, []);
 
+  useEffect(() => {
+    if (selected.length === 5) {
+      setIsNominated(true);
+      setModalView(true);
+      return;
+    }
+    setIsNominated(false)
+  }, [selected]);
+
   const saveToLocalStorage = (items) => {
     localStorage.setItem('Nominees', JSON.stringify(items))
   }
 
   const handleAddNominees = (movie) => {
-    let isNominated = selected.filter(nomination => nomination.imdbID === movie.imdbID).length !== 0;
-    console.log("isNominated: ", isNominated);
-    if (selected.length === 5){
-      setModalView(true);
-    } else{
+    // TODO 
+      // if (selected.length === 3){
+      //   alert("Awesome! You're almost there 🙂")
+      // } else if (selected.length === 4){
+      //   alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
+      // }
       if(!isNominated){
-        const result = [...selected, movie];
-        console.log("result", result);
-        setSelected(result);
-        saveToLocalStorage(result);
+        setSelected([...selected, movie]);
+        saveToLocalStorage([...selected, movie]);
+        return;
       }
-    }
-    if (selected.length === 3){
-      alert("Awesome! You're almost there 🙂")
-    } else if (selected.length === 4){
-      alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
-    }
+  }
+  
+
+  const handleDisableBtn = (movie) => {
+    return selected.some(select => select.imdbID === movie.imdbID);
   }
 
   const handleModalToggle = () => {
@@ -99,8 +110,7 @@ function App() {
       removeNominees={removeNominees}
       modalView={modalView}
       toggle={handleModalToggle}
-      // btnLimit={btnLimit}
-      // setBtnLimit={setBtnLimit}
+      btnLimit={handleDisableBtn}
       />
       <Footer />
     </div>

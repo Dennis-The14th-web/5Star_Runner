@@ -9,10 +9,9 @@ function Movies(props) {
     return (
         <div>
             <Container className='container p-3'>
-       
+                // TODO create another child component for Modal. Also add more animation
                 <Modal 
                         isOpen={ props.modalView }
-                        // toggle={toggle}\
                         size="lg"
                         aria-labelledby="contained-modal-title-vcenter"
                         centered
@@ -43,15 +42,15 @@ function Movies(props) {
                     !props.results?.length ? 
                     <Spinner animation="grow" variant="primary" size="sm" /> 
                     :(
-                    props.results.map((result, id) => (
+                    props.results.map((result, i) => (
                         
                             <li className="movie-list m-2"
-                            key={result.imdbID}>
+                            key={i}>
                                 {result.Title} 
                                 ({result.Year}) 
                             
                             <button className="btn btn-success p-0" id="nominees" 
-                            // disabled={!btnLimit ? true : false}
+                            disabled={props.btnLimit(result)}
                             onClick={()=>props.addNominees(result)} 
                             >
                             Nominate
