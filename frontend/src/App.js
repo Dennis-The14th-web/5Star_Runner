@@ -55,7 +55,7 @@ function App() {
   }
 
   const handleAddNominees = (movie) => {
-    // TODO 
+    // TODO Add modal display || animation for individual click event 
       // if (selected.length === 3){
       //   alert("Awesome! You're almost there 🙂")
       // } else if (selected.length === 4){
