@@ -2,6 +2,10 @@
 
 ## React Frontend Application
 
+## Deployment
+- AWS EC2 unsecured domain loading...⏳
+- Click<a href="3.94.145.160"> here</a> for application at viewers risk.... :electron: ☠️
+
 ### Description
 - The webpage searches OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they should be notified they're finished.
    -  Search OMDB and display the results (movies only)
@@ -11,6 +15,8 @@
 
 
 <a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/PdmPhMjLbyXKMDQzqG/giphy.gif" title="the shoppies app"/></a>
+
+<a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/8Lp2vPJAXVksqQyJ1l/giphy.gif" title="the shoppies app"/></a>
 
 ### Technical requirements
 1. Search results should come from OMDB's API (free API key: http://www.omdbapi.com/apikey.aspx).
