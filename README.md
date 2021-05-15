@@ -1,8 +1,8 @@
-# The Shoppies
+## The Shoppies
 
-## React Frontend Application
+### React Frontend Application
 
-## Deployment
+### Deployment
 - AWS EC2 free tier nginx/ubuntu unsecured domain loading...⏳
 - Click<a href="http://ec2-3-94-145-160.compute-1.amazonaws.com/"> here</a> for application at viewers risk.... :electron: ☠️
 
