@@ -3,8 +3,8 @@
 ## React Frontend Application
 
 ## Deployment
-- AWS EC2 unsecured domain loading...⏳
-- Click<a href="3.94.145.160"> here</a> for application at viewers risk.... :electron: ☠️
+- AWS EC2 free tier nginx/ubuntu unsecured domain loading...⏳
+- Click<a href="http://ec2-3-94-145-160.compute-1.amazonaws.com/"> here</a> for application at viewers risk.... :electron: ☠️
 
 ### Description
 - The webpage searches OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they should be notified they're finished.
