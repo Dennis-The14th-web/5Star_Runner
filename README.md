@@ -3,8 +3,8 @@
 ### React Frontend Application
 
 ### Deployment
-- AWS EC2 free tier nginx/ubuntu unsecured domain loading...⏳
-- Click<a href="http://ec2-3-94-145-160.compute-1.amazonaws.com/"> here</a> for application at viewers risk.... :electron: ☠️
+- AWS EC2 free tier nginx/ubuntu loading...⏳
+- Click<a href="http://ec2-3-94-145-160.compute-1.amazonaws.com/"> here</a> for application.... :electron: 
 
 ### Description
 - The webpage searches OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they're notified they're finished with a celebration banner.
@@ -14,9 +14,9 @@
    -  Remove a nominee from the nomination list
 
 
-<a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/PdmPhMjLbyXKMDQzqG/giphy.gif" title="the shoppies app"/></a>
+<a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/PdmPhMjLbyXKMDQzqG/giphy.gif" title="the shoppies gif"/></a>
 
-<a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/8Lp2vPJAXVksqQyJ1l/giphy.gif" title="the shoppies app"/></a>
+<a href="https://giphy.com/gif/3facxx"><img src="https://media.giphy.com/media/8Lp2vPJAXVksqQyJ1l/giphy.gif" title="the shoppies gif1"/></a>
 
 ### Technical requirement met
 1. Search results should come from OMDB's API (free API key: http://www.omdbapi.com/apikey.aspx).
