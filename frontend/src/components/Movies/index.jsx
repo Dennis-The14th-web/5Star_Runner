@@ -6,10 +6,11 @@ import {Modal, Button, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
 function Movies(props) {
+    // TODO create another child component for Modal. Also add more animation
     return (
         <div>
             <Container className='container p-3'>
-                // TODO create another child component for Modal. Also add more animation
+                
                 <Modal 
                         isOpen={ props.modalView }
                         size="lg"

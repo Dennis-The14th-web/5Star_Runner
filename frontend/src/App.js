@@ -56,11 +56,11 @@ function App() {
 
   const handleAddNominees = (movie) => {
     // TODO Add modal display || animation for individual click event 
-      // if (selected.length === 3){
-      //   alert("Awesome! You're almost there 🙂")
-      // } else if (selected.length === 4){
-      //   alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
-      // }
+      if (selected.length === 2){
+        alert("Awesome! You're almost there 🙂")
+      } else if (selected.length === 3){
+        alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
+      }
       if(!isNominated){
         setSelected([...selected, movie]);
         saveToLocalStorage([...selected, movie]);
