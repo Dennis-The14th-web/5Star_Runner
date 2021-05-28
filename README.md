@@ -4,7 +4,7 @@
 
 ### Deployment
 - AWS EC2 free tier nginx/ubuntu loading...⏳
-- Click<a href="http://ec2-3-94-145-160.compute-1.amazonaws.com/"> here</a> for application.... :electron: 
+- :electron: ....
 
 ### Description
 - The webpage searches OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they're notified they're finished with a celebration banner.
