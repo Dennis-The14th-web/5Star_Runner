@@ -43,14 +43,14 @@ function App() {
     setSelected(result)
   }, []);
 
-  useEffect(() => {
-    if (selected.length === 5) {
-      setIsNominated(true);
-      setModalView(true);
-      return;
-    }
-    setIsNominated(false)
-  }, [selected]);
+  // useEffect(() => {
+  //   if (selected.length === 5) {
+  //     setIsNominated(true);
+  //     setModalView(true);
+  //     return;
+  //   }
+  //   setIsNominated(false)
+  // }, [selected]);
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem('Nominees', JSON.stringify(items))
@@ -62,7 +62,12 @@ function App() {
         alert("Awesome! You're almost there 🙂")
       } else if (selected.length === 3){
         alert("Way to go!! Y🤩U're about to officially become a super⭐!!")
+      } else if (selected.length === 5) {
+        setIsNominated(true);
+        setModalView(true);
+        return;
       }
+      setIsNominated(false);
       if(!isNominated){
         setSelected([...selected, movie]);
         saveToLocalStorage([...selected, movie]);
