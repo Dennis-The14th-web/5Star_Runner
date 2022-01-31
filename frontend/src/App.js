@@ -16,10 +16,12 @@ function App() {
   const [isNominated, setIsNominated] = useState(false);
   
   const queryUrl = `https://www.omdbapi.com/?apikey=${apiKey}`;
+  // console.log(queryUrl)
 
   const handleSearch = (search) => {
    axios(`${queryUrl}&s=${search}`)
    .then(({ data })=>{
+     console.log(data);
     if (data.Search){
     setResults(data.Search)
     }
@@ -32,7 +34,7 @@ function App() {
 
   // useEffect(() => {
   //   handleAddNominees(results)
-  // }, [results]);
+  // }, []);
 
   useEffect(() => {
     const result = JSON.parse(
